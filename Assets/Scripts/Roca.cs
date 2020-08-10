@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Roca : MonoBehaviour
 {
+    [SerializeField] float _lifeTime;
     Rigidbody2D _rigidbody2D;
 
     void Awake() 
@@ -13,11 +14,19 @@ public class Roca : MonoBehaviour
 
     void Start()
     {
-        print("roca start");
         _rigidbody2D.AddForce(new Vector2(1f,1f) * 2f, ForceMode2D.Impulse);
     }
 
-    void OnBecameInvisible() 
+    void OnCollisionEnter2D(Collision2D other) 
+    {
+        //si cae al suelo, se destruye a los X segundos
+        if (other.gameObject.name == "Ground")
+        {
+            Invoke("DestroyObject", _lifeTime);   
+        }
+    }
+
+    void DestroyObject() 
     {
         Destroy(gameObject);    
     }

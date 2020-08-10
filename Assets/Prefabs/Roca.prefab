@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3349800728028194634}
   - component: {fileID: 3747068495335067335}
   - component: {fileID: 3544262216016964328}
+  - component: {fileID: -7138912386903770371}
   m_Layer: 0
   m_Name: Roca
   m_TagString: Untagged
@@ -95,6 +96,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eee3af001bdb5874cbcad985fa3135f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _lifeTime: 3
 --- !u!50 &3544262216016964328
 Rigidbody2D:
   serializedVersion: 4
@@ -116,3 +118,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!58 &-7138912386903770371
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3349800728028194633}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.25
