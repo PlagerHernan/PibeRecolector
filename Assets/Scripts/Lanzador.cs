@@ -16,11 +16,19 @@ public class Lanzador : MonoBehaviour
     void Start() 
     {
         InvokeRepeating("Throw", _timeBetweenThrows, _timeBetweenThrows);
+        
     }
 
     void Throw()
     {
+        StartCoroutine("ThrowCoroutine");
+    }
+
+    IEnumerator ThrowCoroutine()
+    {
         _animator.SetTrigger("throw");
+
+        yield return new WaitForSeconds(1f);
 
         Instantiate(_rocaPrefab, transform.position, new Quaternion());
     }
