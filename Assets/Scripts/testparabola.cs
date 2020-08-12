@@ -14,6 +14,11 @@ public class testparabola : MonoBehaviour
 
     void Update()
     {
+        Throw();
+    }
+
+    void Throw()
+    {
         _animation += Time.deltaTime;
         _animation = _animation % 2.5f;
 
