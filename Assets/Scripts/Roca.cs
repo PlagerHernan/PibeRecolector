@@ -5,42 +5,68 @@ using UnityEngine;
 public class Roca : MonoBehaviour
 {
     [SerializeField] float _lifeTime;
-    bool _grounded;
     Vector3 _initialPosition;
-    Vector3 _finalPosition;
+    Vector3 _startRebound;
+    Vector3 _endParabola;
+    Vector3 _endRebound;
     float _animation;
+    bool _stopParabola;
+    bool _touchedBox;
 
     void Start() 
     {
         _initialPosition = transform.position;   
-        _finalPosition = new Vector3(11f,-6f, 0f); //Y: una unidad por debajo del suelo (para que se detenga al tocarlo)
+
+        _endParabola = new Vector3(7f,-6f, 0f); //Y: una unidad por debajo del suelo (para que se detenga al tocarlo)
+        _endRebound = new Vector3(11f,-6f, 0f);
     }
 
     void Update()
     {
-        //si aún no tocó el suelo, realiza parábola
-        if (!_grounded)
+        //si no tocó el suelo ni la caja, realiza 1ra parábola
+        if (!_stopParabola)
         {
-            Parabola();
+            FirstParabola();
+        }
+        //si tocó la caja resorte, realiza rebote
+        else if (_touchedBox)
+        {
+            //Rebound();
         }
     }
 
-    void Parabola()
+    void FirstParabola()
     {
         _animation += Time.deltaTime;
         _animation = _animation % 2.5f;
 
-        transform.position = MathParabola.Parabola(_initialPosition, _finalPosition, 6.5f, _animation/2.5f);
+        transform.position = MathParabola.Parabola(_initialPosition, _endParabola, 6.5f, _animation/2.5f);
     }
+
+    /* void Rebound()
+    {
+        _animation += Time.deltaTime;
+        _animation = _animation % 2.5f;
+
+        transform.position = MathParabola.Parabola(_startRebound, _endRebound, 6.5f, _animation/2.5f);
+    } */
 
     void OnTriggerEnter2D(Collider2D other) 
     {
         //si toca el suelo, se detiene la parábola y se destruye la roca a los X segundos
         if (other.gameObject.name == "Ground")
         {
-            _grounded = true;
-            
+            _stopParabola = true;
+
             Invoke("DestroyObject", _lifeTime);   
+        }
+
+        else if (other.gameObject.name == "Caja Resorte")
+        {
+            _stopParabola = true;
+
+            /* _startRebound = transform.position;
+            _touchedBox = true; */
         }
     }
 
