@@ -460,5 +460,9 @@ public class ParabolaController : MonoBehaviour
             var x = -b / (2 * a);
             E = new Vector2(x, f(x));
         }
+
+
+
     }
+
 }

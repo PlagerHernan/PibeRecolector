@@ -4,14 +4,24 @@ using UnityEngine;
 
 public class Roca : MonoBehaviour
 {
+    //variable altura max
+
+    TargetWheels _targetWheels;
+
     [SerializeField] float _lifeTime;
     Vector3 _initialPosition;
     Vector3 _startRebound;
     Vector3 _endParabola;
     Vector3 _endRebound;
     float _animation;
+    float _animRebound;
     bool _stopParabola;
     bool _touchedBox;
+
+    void Awake() 
+    {
+        _targetWheels = FindObjectOfType<TargetWheels>();    
+    }
 
     void Start() 
     {
@@ -31,7 +41,7 @@ public class Roca : MonoBehaviour
         //si tocó la caja resorte, realiza rebote
         else if (_touchedBox)
         {
-            //Rebound();
+            Rebound();
         }
     }
 
@@ -43,13 +53,13 @@ public class Roca : MonoBehaviour
         transform.position = MathParabola.Parabola(_initialPosition, _endParabola, 6.5f, _animation/2.5f);
     }
 
-    /* void Rebound()
+    void Rebound()
     {
-        _animation += Time.deltaTime;
-        _animation = _animation % 2.5f;
+        _animRebound += Time.deltaTime;
+        _animRebound = _animRebound % 2.5f;
 
-        transform.position = MathParabola.Parabola(_startRebound, _endRebound, 6.5f, _animation/2.5f);
-    } */
+        transform.position = MathParabola.Parabola(_startRebound, _targetWheels.transform.position, 6.5f, _animRebound/2.5f);
+    }
 
     void OnTriggerEnter2D(Collider2D other) 
     {
@@ -65,8 +75,15 @@ public class Roca : MonoBehaviour
         {
             _stopParabola = true;
 
-            /* _startRebound = transform.position;
-            _touchedBox = true; */
+            _startRebound = transform.position;
+            _touchedBox = true;
+        }
+
+        else if (other.gameObject.name == "Target Wheels")
+        {
+            _stopParabola = true;
+
+            Destroy(gameObject);
         }
     }
 
