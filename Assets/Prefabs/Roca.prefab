@@ -96,6 +96,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eee3af001bdb5874cbcad985fa3135f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _prefabBezier: {fileID: 1399097187085863364, guid: 7ee995ba216e8db4a9881c3239e1e536,
+    type: 3}
   _timeTravel: 0
   _velocity: 2
   _lifeTime: 3

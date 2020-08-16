@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class Roca : MonoBehaviour
 {   
+    [SerializeField] GameObject _prefabBezier; GameObject _bezier; Transform [] _wayPoints;
     Transform _targetWheels;
     Transform _ground;
-    Transform [] _wayPoints;
 
     [SerializeField] float _timeTravel; //min:0 max:1
-    [SerializeField] float _velocity; //min:1 max:4
+    [SerializeField] float _velocity = 3f; //min:1 max:4
     [SerializeField] float _lifeTime;
     
     bool _stopParabola;
@@ -18,11 +18,13 @@ public class Roca : MonoBehaviour
     {
         _ground = GameObject.Find("Ground").transform;
         _targetWheels = GameObject.Find("Target Wheels").transform;  
-        _wayPoints = GameObject.Find("Bezier").GetComponentsInChildren<Transform>();
     }
 
     void Start() 
     {
+        _bezier = GameObject.Instantiate(_prefabBezier);
+        _wayPoints = _bezier.GetComponentsInChildren<Transform>();
+
         _wayPoints[0].position = transform.position; //posición del lanzador (donde se instancia roca)
         _wayPoints[1].position = new Vector3(-2f, 10f, 0f); //altura máxima: 10f
         float _xDistance = 5f; //hacer random
@@ -39,7 +41,7 @@ public class Roca : MonoBehaviour
 
     void Parabola()
     {
-        _timeTravel = Mathf.Clamp(_timeTravel + 0.005f * _velocity, 0f, 1f);
+        _timeTravel = Mathf.Clamp(_timeTravel + 0.3f * _velocity * Time.deltaTime, 0f, 1f);
         transform.position = CalculateBezier(_wayPoints[0].position, _wayPoints[1].position, _wayPoints[2].position, _timeTravel);
     }
 
@@ -63,6 +65,7 @@ public class Roca : MonoBehaviour
         {
             _stopParabola = true;
             Destroy(gameObject, _lifeTime);
+            Destroy(_bezier);
         }
 
         else if (other.gameObject.name == "Caja Resorte")
@@ -77,14 +80,14 @@ public class Roca : MonoBehaviour
 
         else if (other.gameObject.name == "Target Wheels")
         {
-            _stopParabola = true;
             Destroy(gameObject);
+            Destroy(_bezier);
         }
 
         else if (other.gameObject.name == "Right Limit")
         {
-            _stopParabola = true;
             Destroy(gameObject);
+            Destroy(_bezier);
         }
     }
 }
