@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Roca : MonoBehaviour
 {   
+    Game _game;
     [SerializeField] GameObject _prefabBezier; GameObject _bezier; Transform [] _wayPoints;
     Transform _targetWheels;
     Transform _ground;
@@ -16,8 +17,9 @@ public class Roca : MonoBehaviour
 
     void Awake() 
     {
-        _ground = GameObject.Find("Ground").transform;
+        _game = GameObject.FindObjectOfType<Game>();
         _targetWheels = GameObject.Find("Target Wheels").transform;  
+        _ground = GameObject.Find("Ground").transform;
     }
 
     void Start() 
@@ -81,6 +83,8 @@ public class Roca : MonoBehaviour
 
         else if (other.gameObject.name == "Target Wheels")
         {
+            _game.AddStone();
+
             Destroy(gameObject);
             Destroy(_bezier);
         }
