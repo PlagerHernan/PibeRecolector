@@ -25,9 +25,11 @@ public class Roca : MonoBehaviour
         _bezier = GameObject.Instantiate(_prefabBezier);
         _wayPoints = _bezier.GetComponentsInChildren<Transform>();
 
+        float _xDistance = 15f; //hacer random, min:4
+        //float _yDistance = 10f; //hacer random, max:10
+        
         _wayPoints[0].position = transform.position; //posición del lanzador (donde se instancia roca)
-        _wayPoints[1].position = new Vector3(-2f, 10f, 0f); //altura máxima: 10f
-        float _xDistance = 5f; //hacer random
+        _wayPoints[1].position = new Vector3(_xDistance/2, 10f, 0f); //X: a mitad de camino entre posición inicial y final
         _wayPoints[2].position = new Vector3(_xDistance, _ground.position.y - 1f, 0f); //Y: una unidad por debajo del suelo (para que se detenga al tocarlo)
     }
 
