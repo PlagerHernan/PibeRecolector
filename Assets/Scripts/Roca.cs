@@ -25,8 +25,8 @@ public class Roca : MonoBehaviour
         _bezier = GameObject.Instantiate(_prefabBezier);
         _wayPoints = _bezier.GetComponentsInChildren<Transform>();
 
-        float _xDistance = 15f; //hacer random, min:4
-        //float _yDistance = 10f; //hacer random, max:10
+        float _xDistance = Random.Range(5f, 15f); //hacer random, min:4
+        float _yDistance = Random.Range(3f, 15f); //hacer random, max:10
         
         _wayPoints[0].position = transform.position; //posición del lanzador (donde se instancia roca)
         _wayPoints[1].position = new Vector3(_xDistance/2, 10f, 0f); //X: a mitad de camino entre posición inicial y final
@@ -74,8 +74,7 @@ public class Roca : MonoBehaviour
         {
             _stopParabola = true; 
 
-            _wayPoints[0].position = transform.position; //empieza desde la última posición de la roca al tocar la caja
-            _timeTravel = 0f; //prepara nueva parábola desde cero
+            PrepareRebound();
 
             _stopParabola = false;
         }
@@ -91,5 +90,20 @@ public class Roca : MonoBehaviour
             Destroy(gameObject);
             Destroy(_bezier);
         }
+    }
+
+    //reposiciona wayPoints para próxima parábola (rebote)
+    void PrepareRebound()
+    {
+        _wayPoints[0].position = transform.position; //empieza desde la última posición de la roca al tocar la caja
+
+        float distance = _targetWheels.position.x - _wayPoints[2].position.x;
+        //si va a pasarse del target o le va a faltar muy poco para llegar, va hacia target (un poco más a la derecha, por el hueco)
+        if (_wayPoints[2].position.x > _targetWheels.position.x || distance < 1f)
+        {
+            _wayPoints[2].position = new Vector3(_targetWheels.position.x + 0.7f, _targetWheels.position.y, 0f);
+        }
+
+        _timeTravel = 0f; //resetea tiempo de trayectoria (nueva parábola desde cero)
     }
 }

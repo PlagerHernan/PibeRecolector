@@ -1435,7 +1435,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rocaPrefab: {fileID: 3349800728028194633, guid: 536730f3ad377a8488d7a3e749f8b35e,
     type: 3}
-  _timeBetweenThrows: 2
+  _timeBetweenThrows: 3
 --- !u!1 &1104302289
 GameObject:
   m_ObjectHideFlags: 0
@@ -2306,7 +2306,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1639433287}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 13, y: 0.26, z: 0}
+  m_LocalPosition: {x: 13, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 639933957}
