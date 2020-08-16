@@ -5,6 +5,7 @@ using UnityEngine;
 public class Roca : MonoBehaviour
 {   
     Game _game;
+    CajaResorte _cajaResorte;
     [SerializeField] GameObject _prefabBezier; GameObject _bezier; Transform [] _wayPoints;
     Transform _targetWheels;
     Transform _ground;
@@ -17,7 +18,8 @@ public class Roca : MonoBehaviour
 
     void Awake() 
     {
-        _game = GameObject.FindObjectOfType<Game>();
+        _game = FindObjectOfType<Game>();
+        _cajaResorte = FindObjectOfType<CajaResorte>();
         _targetWheels = GameObject.Find("Target Wheels").transform;  
         _ground = GameObject.Find("Ground").transform;
     }
@@ -99,15 +101,25 @@ public class Roca : MonoBehaviour
     //reposiciona wayPoints para próxima parábola (rebote)
     void PrepareRebound()
     {
-        _wayPoints[0].position = transform.position; //empieza desde la última posición de la roca al tocar la caja
+        //empieza desde la última posición de la roca al tocar la caja
+        _wayPoints[0].position = transform.position;
 
+        //distancia que le queda hasta el target
         float distance = _targetWheels.position.x - _wayPoints[2].position.x;
-        //si va a pasarse del target o le va a faltar muy poco para llegar, va hacia target (un poco más a la derecha, por el hueco)
+        //Último rebote 
+        //si se pasa del target o le falta muy poco para llegar, va hacia target (un poco más a la derecha, por el hueco)
         if (_wayPoints[2].position.x > _targetWheels.position.x || distance < 1f)
         {
             _wayPoints[2].position = new Vector3(_targetWheels.position.x + 0.7f, _targetWheels.position.y, 0f);
         }
+        //No es último rebote 
+        else
+        {
+            //altura depende del factor de rebote vertical de la caja
+            _wayPoints[1].position = new Vector3(_wayPoints[1].position.x, _wayPoints[1].position.y * _cajaResorte.VerticalBounceFactor, 0f);
+        }
 
-        _timeTravel = 0f; //resetea tiempo de trayectoria (nueva parábola desde cero)
+        //resetea tiempo de trayectoria (nueva parábola desde cero)
+        _timeTravel = 0f; 
     }
 }
