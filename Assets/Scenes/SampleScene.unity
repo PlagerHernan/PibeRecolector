@@ -675,7 +675,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _prefabCoin: {fileID: 4134189419737425000, guid: 3e982567e1da81246b2f4e87926966ca,
     type: 3}
-  _quantityOfStonesForCoin: 2
+  _quantityOfStonesForCoin: 3
 --- !u!4 &301244340
 Transform:
   m_ObjectHideFlags: 0
@@ -2956,4 +2956,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e7e3479bcffe6c45a7e38def88df213, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _timeLevel: 30
+  _timeLevel: 60

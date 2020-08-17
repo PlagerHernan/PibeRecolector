@@ -10,11 +10,11 @@ public class Roca : MonoBehaviour
     Transform _targetWheels;
     Transform _ground;
 
-    [SerializeField] float _timeTravel; //min:0 max:1
-    [SerializeField] float _velocity = 3f; //min:1 max:4
-    [SerializeField] float _lifeTime;
+    [SerializeField] [Range(1f, 4f)] float _velocity; 
+    [SerializeField] [Range(1f, 4f)] float _lifeTime;
     
     bool _stopParabola;
+    float _timeTravel;
 
     void Awake() 
     {

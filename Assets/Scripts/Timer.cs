@@ -5,7 +5,9 @@ using UnityEngine.UI;
 
 public class Timer : MonoBehaviour
 {
-    [SerializeField] int _timeLevel;
+    Game _game;
+
+    [SerializeField] [Range(10, 120)] int _timeLevel;
     float _decimalTimeLevel; 
 
     private void Start() 
@@ -15,11 +17,21 @@ public class Timer : MonoBehaviour
 
     void Update()
     {
+        //Timer en funcionamiento, juego en marcha
         if (_timeLevel > 0)
         {   
             _decimalTimeLevel -= Time.deltaTime; 
             _timeLevel = Mathf.RoundToInt(_decimalTimeLevel);
             GetComponent<Text>().text = "TIME \n" + _timeLevel.ToString();
+        }
+        //Timer en cero, juego detenido
+        else
+        {
+            if (_game == null)
+            {
+                _game = FindObjectOfType<Game>();
+            }
+            _game.FinishLevel();
         }
     }
 }

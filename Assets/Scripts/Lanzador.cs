@@ -5,7 +5,7 @@ using UnityEngine;
 public class Lanzador : MonoBehaviour
 {
     [SerializeField] GameObject _rocaPrefab;
-    [SerializeField] float _timeBetweenThrows; 
+    [SerializeField] [Range(1f, 6f)] float _timeBetweenThrows; 
     Animator _animator; 
 
     void Awake() 

@@ -7,19 +7,20 @@ public class Game : MonoBehaviour
 {
     [SerializeField] GameObject _prefabCoin;
 
-    [SerializeField] int _quantityOfStonesForCoin;
+    [SerializeField] [Range(1, 5)] int _quantityOfStonesForCoin;
 
-    Text _stonesText;
-    int _stonesCount;
+    Text _stonesText; int _stonesCount;
+    Text _coinsText; int _coinsCount;
+    
 
     Transform _ground;
-    Transform _rightLimit; 
-    Transform _leftLimit; 
+    Transform _rightLimit; Transform _leftLimit; 
     Vector3 _coinPosition; 
 
     void Awake() 
     {
         _stonesText = GameObject.Find("Stones Count").GetComponentInChildren<Text>();
+        _coinsText = GameObject.Find("Coins Count").GetComponentInChildren<Text>();
 
         _ground = GameObject.Find("Ground").transform;
         _rightLimit = GameObject.Find("Right Limit").transform;
@@ -31,12 +32,18 @@ public class Game : MonoBehaviour
         _stonesCount++;
         _stonesText.text = "x " + _stonesCount.ToString("00"); 
 
-        if (_stonesCount == _quantityOfStonesForCoin)
+
+        if (_stonesCount % _quantityOfStonesForCoin == 0)
         {
             GetCoinPosition();
             Instantiate(_prefabCoin, _coinPosition, new Quaternion()); 
-            _stonesCount = 0;
         }
+    }
+
+    public void AddCoin()
+    {
+        _coinsCount++;
+        _coinsText.text = "x " + _coinsCount.ToString("00"); 
     }
 
     void GetCoinPosition()
@@ -47,5 +54,10 @@ public class Game : MonoBehaviour
         float yPosition = Random.Range(_ground.position.y -1f, _ground.position.y +1f); 
 
         _coinPosition = new Vector3(xPosition, yPosition);  
+    }
+
+    public void FinishLevel()
+    {
+        Time.timeScale = 0;
     }
 }

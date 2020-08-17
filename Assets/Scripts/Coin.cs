@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class Coin : MonoBehaviour
 {
-    [SerializeField] float _lifeTime;
+    Game _game;
+
+    [SerializeField] [Range(3f, 7f)] float _lifeTime;
 
     void Start() 
     {
@@ -15,7 +17,12 @@ public class Coin : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            //
+            if (_game == null)
+            {
+                _game = FindObjectOfType<Game>();
+            }
+            _game.AddCoin();
+            Destroy(gameObject);
         }    
     }
 }

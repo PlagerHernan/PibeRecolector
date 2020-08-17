@@ -8,7 +8,7 @@ public class Heroe : MonoBehaviour
     [SerializeField] Transform _leftLimit;
     float _groundPosition;
 
-    [SerializeField] float _velocity;
+    [SerializeField] [Range(3f, 9f)] float _velocity;
     float _xMovement;
     Animator _animator;
 
