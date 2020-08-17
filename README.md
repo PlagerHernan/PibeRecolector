@@ -1,6 +1,6 @@
 # WorktestUnity_HernanPlager
 
-Level Design:
+## Level Design
 
 Parámetros configurables desde Inspector de Unity:
 
@@ -20,12 +20,12 @@ Parámetros configurables desde Inspector de Unity:
 - Timer -> TimeLevel. Min: 10 - Max: 120 (segundos)
 
 
-Programación:
+## Programación
 
 Cada x segundos, la clase Lanzador instancia una nueva roca. La clase Roca, a su vez, instancia un objeto (bezier) al cual asigna las posiciones de sus 3 wayPoints (puntos que la roca tendrá que recorrer en su próxima trayectoria). Dichas posiciones son asignadas de forma aleatoria, siempre que el último wayPoint coincida con el suelo (excepto el último rebote, que se dirige directo al target). Si la caja resorte se interpone en la trayectoria, se interrumpe la parábola y se reposiciona el primer wayPoint en la última posición de la roca al tocar la caja. De esta forma, el objeto bezier, junto con sus objetos hijos (wayPoints), se desplazan hacia la derecha de la pantalla, respetando la distancia entre ellos, a excepción de que la caja resorte tenga un factor de rebote vertical distinto a 1, lo cual afecta la altura del rebote. Los cuerpos rígidos sólo se utilizan en función de la detección de triggers, puesto que la física provista por Unity no está implementada. El método encargado de calcular las parábolas está basado en la fórmula de curva cuadrática de Bézier: https://es.wikipedia.org/wiki/Curva_de_B%C3%A9zier#Curvas_cuadr%C3%A1ticas_de_B%C3%A9zier        
 
 
-Arte: 
+## Arte
 
 - Reconfigurado tamaño de Roca mediante Pixels Per Unit (estaba demasiado pequeña).
 
