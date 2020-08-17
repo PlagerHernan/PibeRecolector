@@ -26,15 +26,7 @@ public class Roca : MonoBehaviour
 
     void Start() 
     {
-        _bezier = GameObject.Instantiate(_prefabBezier);
-        _wayPoints = _bezier.GetComponentsInChildren<Transform>();
-
-        float _xDistance = Random.Range(5f, 15f); 
-        float _yDistance = Random.Range(3f, 15f); 
-        
-        _wayPoints[0].position = transform.position; //posición del lanzador (donde se instancia roca)
-        _wayPoints[1].position = new Vector3(_xDistance/2, 10f, 0f); //X: a mitad de camino entre posición inicial y final
-        _wayPoints[2].position = new Vector3(_xDistance, _ground.position.y - 1f, 0f); //Y: una unidad por debajo del suelo (para que se detenga al tocarlo)
+        PrepareParabola();
     }
 
     void Update()
@@ -64,6 +56,7 @@ public class Roca : MonoBehaviour
         if (other.gameObject.name == "Ground")
         {
             _stopParabola = true;
+            
             Destroy(gameObject, _lifeTime);
             Destroy(_bezier);
         }
@@ -84,12 +77,20 @@ public class Roca : MonoBehaviour
             Destroy(gameObject);
             Destroy(_bezier);
         }
+    }
 
-        else if (other.gameObject.name == "Right Limit")
-        {
-            Destroy(gameObject);
-            Destroy(_bezier);
-        }
+    //posiciona wayPoints para primer parábola
+    void PrepareParabola()
+    {
+        _bezier = GameObject.Instantiate(_prefabBezier);
+        _wayPoints = _bezier.GetComponentsInChildren<Transform>();
+
+        float _xDistance = Random.Range(5f, 15f); 
+        float _yDistance = Random.Range(3f, 15f); 
+        
+        _wayPoints[0].position = transform.position; //posición del lanzador (donde se instancia roca)
+        _wayPoints[1].position = new Vector3(_xDistance/2, 10f, 0f); //X: a mitad de camino entre posición inicial y final
+        _wayPoints[2].position = new Vector3(_xDistance, _ground.position.y - 1f, 0f); //Y: una unidad por debajo del suelo (para que se detenga al tocarlo)
     }
 
     //reposiciona wayPoints para próxima parábola (rebote)

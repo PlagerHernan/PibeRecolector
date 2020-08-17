@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Background : MonoBehaviour
 {
     [SerializeField] Camera _mainCamera;
-    [SerializeField] float _parallaxSpeed;
+    [SerializeField] float _parallaxSpeed; //0.01f 
 
     RawImage _rawImage;
 

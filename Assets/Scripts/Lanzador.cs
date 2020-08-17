@@ -16,7 +16,6 @@ public class Lanzador : MonoBehaviour
     void Start() 
     {
         InvokeRepeating("Throw", 1f, _timeBetweenThrows);
-        
     }
 
     void Throw()
