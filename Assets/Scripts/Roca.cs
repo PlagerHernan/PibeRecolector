@@ -53,16 +53,10 @@ public class Roca : MonoBehaviour
 
     Vector3 CalculateBezier(Vector3 p0, Vector3 p1, Vector3 p2, float t)
     {
-        float u = 1 - t;
-        float tt = t * t;
-        float uu = u * u;
+        //Fórmula curva cuadrática de Bézier
+        Vector3 bezier = (1-t) * (1-t) * p0 + 2*t * (1-t) * p1 + t*t * p2;
 
-        Vector3
-        p = uu * p0;
-        p += 2 * u * t * p1;
-        p += tt * p2;
-
-        return p;
+        return bezier;
     }
 
     void OnTriggerEnter2D(Collider2D other) 
