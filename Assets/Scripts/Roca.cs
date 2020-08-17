@@ -29,8 +29,8 @@ public class Roca : MonoBehaviour
         _bezier = GameObject.Instantiate(_prefabBezier);
         _wayPoints = _bezier.GetComponentsInChildren<Transform>();
 
-        float _xDistance = Random.Range(5f, 15f); //hacer random, min:4
-        float _yDistance = Random.Range(3f, 15f); //hacer random, max:10
+        float _xDistance = Random.Range(5f, 15f); 
+        float _yDistance = Random.Range(3f, 15f); 
         
         _wayPoints[0].position = transform.position; //posición del lanzador (donde se instancia roca)
         _wayPoints[1].position = new Vector3(_xDistance/2, 10f, 0f); //X: a mitad de camino entre posición inicial y final
@@ -47,7 +47,7 @@ public class Roca : MonoBehaviour
 
     void Parabola()
     {
-        _timeTravel = Mathf.Clamp(_timeTravel + 0.3f * _velocity * Time.deltaTime, 0f, 1f);
+        _timeTravel = Mathf.Clamp(_timeTravel + 0.3f * _velocity * Time.deltaTime, 0f, 1f); //0: inicio trayectoria //1: fin trayectoria 
         transform.position = CalculateBezier(_wayPoints[0].position, _wayPoints[1].position, _wayPoints[2].position, _timeTravel);
     }
 
