@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 695d2c28da57f0b46be5e40899d0eac7
+guid: 016195bad2a20744db287ee23f310442
 TextureImporter:
   internalIDToNameTable:
   - first:
@@ -14,6 +14,12 @@ TextureImporter:
   - first:
       213: 5886108249015157668
     second: Lanzador_throw_3
+  - first:
+      213: 1071599990865390370
+    second: Lanzador_throw_4
+  - first:
+      213: 2950252858440409250
+    second: Lanzador_throw_5
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -112,7 +118,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5d3aa0790939f3245a1643cfd6add5f5
+      spriteID: 1f74f428610b6ce49a7aee20f94647e7
       internalID: -3181931446896071056
       vertices: []
       indices: 
@@ -122,10 +128,10 @@ TextureImporter:
       name: Lanzador_throw_1
       rect:
         serializedVersion: 2
-        x: 35
+        x: 34
         y: 0
-        width: 22
-        height: 25
+        width: 21
+        height: 24
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -133,7 +139,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 276b202e4d203f340a46acba7c054952
+      spriteID: b68667092fcaa6c41910fb8befb4b108
       internalID: 1512309591815750114
       vertices: []
       indices: 
@@ -145,7 +151,7 @@ TextureImporter:
         serializedVersion: 2
         x: 69
         y: 0
-        width: 20
+        width: 27
         height: 27
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -154,7 +160,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7b008576b7240da40831844013c746e7
+      spriteID: 2c9fd62df9931d34ba2385e3c341da17
       internalID: 2285753552388002853
       vertices: []
       indices: 
@@ -166,6 +172,48 @@ TextureImporter:
         serializedVersion: 2
         x: 99
         y: 0
+        width: 23
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 908042c556b363f45868bfbec8e9357d
+      internalID: 5886108249015157668
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lanzador_throw_4
+      rect:
+        serializedVersion: 2
+        x: 133
+        y: 0
+        width: 25
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d0de3117403a4c449e262f526be47e6
+      internalID: 1071599990865390370
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lanzador_throw_5
+      rect:
+        serializedVersion: 2
+        x: 163
+        y: 0
         width: 21
         height: 27
       alignment: 0
@@ -175,8 +223,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e7d991ea79b8990498ce45199d539c02
-      internalID: 5886108249015157668
+      spriteID: 2ca7ba8921f9798408cb005fc0947aec
+      internalID: 2950252858440409250
       vertices: []
       indices: 
       edges: []

@@ -20,14 +20,14 @@ public class Lanzador : MonoBehaviour
 
     void Throw()
     {
-        StartCoroutine("ThrowCoroutine");
+        StartCoroutine(ThrowCoroutine());
     }
 
     IEnumerator ThrowCoroutine()
     {
         _animator.SetTrigger("throw");
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.4f);
 
         Instantiate(_rocaPrefab, transform.position, new Quaternion());
     }
